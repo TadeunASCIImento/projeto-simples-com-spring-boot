@@ -6,6 +6,7 @@ desenvolvimento de aplicações com o Spring Framework.
 Foram utilizadas as seguintes tecnologias no desenvolvimento:
 
  1 - Spring Boot
+
     ° Para inicialização e configuração das dependências do projeto.
 
  1 - Para o formulário de inserção dos dados:
