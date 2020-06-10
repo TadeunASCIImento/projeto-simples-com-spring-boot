@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Agenda de Contatos Spring</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style type="text/css">
+@font-face {
+	font-family: 'LexendTera-Regular';
+	src: url('fonts/LexendTera-Regular.ttf');
+}
+
+h4 {
+	margin-top: 20px;
+	color: tomato;
+}
+
+* {
+	font-family: "LexendTera-Regular";
+}
+
+#in-bairro, #in-cidade, #in-estado {
+	width: 400px;
+	margin: 10px 0 0 0;
+}
+
+#in-numero {
+	width: 100px;
+	margin: 10px 0 0 10px;
+}
+
+#in-endereco {
+	width: 500px;
+	margin: 10px 0 0 0;
+}
+
+#in-nome {
+	width: 300px;
+	margin: 10px 0 0 0;
+}
+
+#in-sobrenome {
+	width: 400px;
+	margin: 10px 0 0 10px;
+}
+
+#in-email {
+	width: 400px;
+	margin: 10px 0 0 0;
+}
+
+#in-fone {
+	width: 300px;
+	margin: 10px 0 0 0;
+}
+
+button {
+	margin: 20px 0 0 0;
+	width: 200px;
+}
+
+#img-icon {
+	border-radius: 120px;
+}
+</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="panel panel-default" style="margin: 10px;">
+			<form method="POST" th:object="${contato}" th:action="@{/contatos}">
+				<h4 class="panel-title">Formulário de cadastro de contatos</h4>
+				<div class="form-inline">
+					<input id="in-nome" type="text" class="form-control"
+						placeholder="Nome" th:field="*{nome}" /> <input id="in-sobrenome"
+						type="text" class="form-control" placeholder="Sobrenome"
+						th:field="*{sobrenome}" />
+				</div>
+				<div class="form-block">
+					<input id="in-email" type="text" class="form-control"
+						placeholder="E-mail" th:field="*{email}" /> <input id="in-fone"
+						type="text" class="form-control" placeholder="Telefone"
+						th:field="*{telefone}" />
+				</div>
+
+				<div class="form-inline">
+
+					<input id="in-endereco" type="text" class="form-control"
+						placeholder="Endereço" th:field="*{endereco}" /> <input
+						id="in-numero" type="text" class="form-control" placeholder="N°"
+						th:field="*{numero}" />
+				</div>
+				<div class="form-block">
+					<input id="in-bairro" type="text" class="form-control"
+						placeholder="Bairro" th:field="*{bairro}" /> <input
+						id="in-cidade" type="text" class="form-control"
+						placeholder="Cidade" th:field="*{cidade}" /> <input
+						id="in-estado" type="text" class="form-control"
+						placeholder="Estado" th:field="*{estado}" />
+				</div>
+				<button type="submit" class="btn btn-secondary">
+					<b>CADASTRAR</b>
+				</button>
+			</form>
+			<div class="panel-heading">
+				<h4 class="panel-title">Lista de contatos cadastrados</h4>
+			</div>
+		</div>
+		<div class="panel-body">
+			<table class="table table-dark">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Sobrenome</th>
+						<th>E-mail</th>
+						<th>Telefone</th>
+						<th>Endereço</th>
+						<th>N°</th>
+						<th>Bairro</th>
+						<th>Cidade</th>
+						<th>Estado</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="contato:${contatos}">
+						<td th:text="${contato.nome}"></td>
+						<td th:text="${contato.sobrenome}"></td>
+						<td th:text="${contato.email}"></td>
+						<td th:text="${contato.telefone}"></td>
+						<td th:text="${contato.endereco}"></td>
+						<td th:text="${contato.numero}"></td>
+						<td th:text="${contato.bairro}"></td>
+						<td th:text="${contato.cidade}"></td>
+						<td th:text="${contato.estado}"></td>
+						<td><a th:href="@{contatos/remover/{id}(id=${contato.id})}"><img
+								id="img-icon" src="icons/trash.png" /></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</div>
+</body>
+</html>
